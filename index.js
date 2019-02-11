@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const app = express();
 
-
+app.use(express.static('build'))
 app.use(cors())
 app.use(bodyParser.json());
 morgan.token("json", function(req, res) {
@@ -36,7 +36,7 @@ let persons = [
   }
 ];
 
-app.get("/persons", (req, res) => {
+app.get("/api/persons", (req, res) => {
   res.json(persons);
 });
 
@@ -48,13 +48,13 @@ app.get("/info", (req, res) => {
   );
 });
 
-app.delete("/persons/:id", (req, res) => {
+app.delete("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
   persons = persons.filter(person => person.id !== id);
   res.status(204).end();
 });
 
-app.post("/persons", (req, res) => {
+app.post("/api/persons", (req, res) => {
   const newPerson = req.body;
   newPerson.id = Math.floor(Math.random() * 10000);
 
@@ -73,7 +73,7 @@ app.post("/persons", (req, res) => {
   res.json(newPerson);
 });
 
-app.get("/persons/:id", (req, res) => {
+app.get("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
   const person = persons.find(person => person.id === id);
   if (person) {
