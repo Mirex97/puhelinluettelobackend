@@ -3,6 +3,6 @@ Content-Type: application/json
 
 {
     "id": "",
-    "name": "Kukkis",
+    "name": "Testi",
     "number": "040-12345677890112"
 }
